@@ -1,0 +1,27 @@
+<%= render 'navbar'%>
+
+<div class="container">
+  <h1>All our Flats</h1>
+  <div class="row">
+    <% @flats.each do |flat| %>
+    <div class="col-md-4 mb-3">
+      <div class="card h-100">
+        <div class="card-body bg-light">
+            <div class="card-title">
+              <h4><%= flat.name %></h4>
+            </div>
+            <p><%= flat.address %></p>
+            <div class="fa-solid fa-people-line p-1"> <%=flat.number_of_guests %></div>
+            <div class="fa-solid fa-euro-sign p-1"> <%=flat.price_per_night %></div>
+        </div>
+        <div class="card-footer bg-white">
+          <%=link_to "More Info", flat_path(flat)%>
+          <%=link_to "Edit", edit_flat_path(flat), class:" text-warning m-3"%>
+          <%=link_to "Remove", flat_path(flat),
+          data: { turbo_method: :delete, confirm: "Are you sure?" }, class: "text-danger"%>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
